@@ -1,18 +1,18 @@
-// Copyright by Enigma
+// Copyright by PanasyukMaria
 
 #include "hash.hpp"
 
 void SetUpLogging() {
     auto TraceFileLogger = boost::log::add_file_log(
             boost::log::keywords::file_name =
-                    "/home/enigma/twinLabs/c++ developer/lab6/logs/"
+                    "/home/morgan/Documents/lab/lab6/logs/"
                     "TraceLog_%N.log",
             boost::log::keywords::rotation_size = 10 * 1024 * 1024,
             boost::log::keywords::format =
                     "[%TimeStamp%][%Severity%][%ThreadID%]: %Message%");
     auto InfoFileLogger = boost::log::add_file_log(
             boost::log::keywords::file_name =
-                    "/home/enigma/twinLabs/c++ developer/lab6/logs/"
+                    "/home/morgan/Documents/lab/lab6/logs/"
                     "TraceLog_%N.log",
             boost::log::keywords::format =
                     "[%TimeStamp%][%Severity%][%ThreadID%]: %Message%");

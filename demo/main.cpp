@@ -1,4 +1,4 @@
-// Copyright by Enigma
+// Copyright by PanasyukMaria
 
 #include "picosha2.h"
 #include "hash.hpp"
@@ -19,22 +19,21 @@ void stopProcess(int param) {
 
 void hashGenerator(JsonFiler& j) {
   while (continueProcess) {
-    std::string genstring = std::to_string(std::rand());
-    std::string hash = picosha2::hash256_hex_string(genstring);
+    std::string gstring = std::to_string(std::rand());
+    std::string hash = picosha2::hash256_hex_string(gstring);
     std::time_t timestamp(std::time(nullptr));
     std::string lastChar = hash.substr(hash.size() - NumZeroes);
-
     if (lastChar == Ending) {
       BOOST_LOG_TRIVIAL(info)
           << "Necessary ending found in hash |" << hash
-          << "| generarted from string |" << genstring << "|";
+          << "| generarted from string |" << gstring << "|";
       if (addToJson) {
-        j.NewElement(genstring, hash, timestamp);
+        j.NewElement(gstring, hash, timestamp);
       }
     } else {
       BOOST_LOG_TRIVIAL(trace)
           << "Hash |" << hash << "| generated from string|"
-          << genstring << "|";
+          << gstring << "|";
     }
   }
 }
@@ -63,8 +62,10 @@ void StartProcess(const int& argc, char **argv){
       addToJson = true;
       break;
     default:
-      throw std::out_of_range("Invalid number of arguments!!!");
+      throw std::out_of_range("Invalid n"
+          "umber of arguments!!!");
   }
+
   SetUpLogging();
   boost::log::add_common_attributes();
   std::vector<std::thread> threads;
@@ -88,3 +89,4 @@ int main(int argc, char* argv[]) {
   StartProcess(argc,argv);
   return 0;
 }
+
